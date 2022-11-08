@@ -1,10 +1,10 @@
  /*reset*/
-* {
+* { 
     margin: 0;
     padding: 0;
     font-family: 'Roboto';
-    font-size: 13px;
     letter-spacing: 1px;
+    font-size: 12px;
     color: rgb(255, 255, 255);
     box-sizing: border-box;
     cursor: default;
@@ -38,7 +38,7 @@ header {
 }
 
 #menu {
-    width: 1300px;
+    width: 1330px;
     margin: auto;
     padding: 20px 5px;
 }
@@ -59,7 +59,7 @@ header {
 
 main {
     display: none;
-    width: 1300px;
+    width: 1330px;
     margin: auto;
     padding: 5px;
 }
@@ -130,7 +130,7 @@ form {
 
 select, input {
     width: 99%;
-    height: 25px;
+    height: 29px;
     padding-left: 5px;
     border-style: none;
     border-radius: 10px;
@@ -144,12 +144,12 @@ select, input {
 }
 
 li {
-    margin: 20px 0 0 0;
+    margin: 15px 0 0 0;
     list-style: none;
 }
 
 ul {
-    margin: 0 0 0 15px;
+    margin: 0 0 0 20px;
 }
 
 #comp1, #comp3, #comp7,
@@ -171,16 +171,20 @@ ul {
     background: rgb(80, 80, 80);
 }
 td {
-    width: 153px;
-    height: 40px;
+    width: 163px;
+    height: 30px;
 } .tdBtn {
-    width: 85px;
+    width: 75px;
 } .tdTextLeft {
     text-align: left;
-    font-size: 12px;
-    color: rgb(108, 172, 255);
 } .tdTextColorPurple {
     color: rgb(255, 130, 255);
+} .tdTextColorBlue {
+    color: rgb(136, 173, 255);
+} .tdTextColorRed {
+    color: rgb(255, 154, 154);
+} .tdTextColorGray {
+    color: rgb(215, 215, 215);
 }
 
 .checkbox {
@@ -200,20 +204,15 @@ td {
 button {
     display: inline-block;
     width: 70px;
-    
-    padding: 2px;
-
+    padding: 3px;
     cursor: pointer;
-
     border: none;
     border-radius: 5px;
-
     outline: none;
-
     color: rgb(255, 255, 255);
-    background: rgba(99, 99, 99, 0.8);
+    background: rgba(139, 139, 139, 0.8);
 } button:hover {
-    background: rgba(99, 99, 99, 1);
+    background: rgba(139, 139, 139, 1);
 }
 
 .btnUpd, #newProduct {

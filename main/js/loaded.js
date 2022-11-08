@@ -367,11 +367,11 @@ function tabela(cb) {
 
             '<td>' + e.fornecedor + '</td>' +
 
-            '<td class="tdTextLeft">' + zero(qtdCompras--) + '. ' + e.id + '</td>' +
+            '<td class="tdTextLeft tdTextColorGray">' + zero(qtdCompras--) + '. ' + e.id + '</td>' +
 
-            '<td>' + formatData(e.data) + '</td>' +
+            '<td class="tdTextColorRed">' + formatData(e.data) + '</td>' +
 
-            '<td>' + toBRL(e.valor) + ' . ' + toBRL(e.unidade) + '</td>' +
+            '<td class="tdTextColorBlue">' + toBRL(e.valor) + ' . ' + toBRL(e.unidade) + '</td>' +
 
             '<td>' + e.quantidade + '</td>' +
 
@@ -396,19 +396,19 @@ function tabela(cb) {
         vendaLista.appendChild(novoElemento('tr'));
         vendaLista.lastChild.innerHTML = (
 
-            '<td class="tdTextLeft">' + zero(qtdVendas--) + '. ' + e.id + '</td>' +
+            '<td class="tdTextLeft tdTextColorGray">' + zero(qtdVendas--) + '. ' + e.id + '</td>' +
 
-            '<td>' + formatData(e.data) + '</td>' +
+            '<td class="tdTextColorRed">' + formatData(e.data) + '</td>' +
 
-            '<td>' + toBRL(e.valor) + '</td>' +
+            '<td class="tdTextColorBlue">' + toBRL(e.valor) + '</td>' +
 
-            '<td class="tdTextColorPurple">' + e.taxa + ' %' + '</td>' +
+            '<td class="tdTextColorGray">' + e.taxa + ' %' + '</td>' +
 
             '<td class="tdTextColorPurple">' + toBRL(e.faturado) + '</td>' +
 
             '<td class="tdTextColorPurple">' + toBRL(e.lucro) + '</td>' +
 
-            '<td>' + concluido(e.concluido) + '</td>' +  //concluido
+            '<td class="tdTextColorRed">' + concluido(e.concluido) + '</td>' +  //concluido
 
             '<td class="tdBtn">' +
                 '<button value="' + i + '" class="btnEdit" id="vendaEdit" onclick="editar(this.value, this.id)"> editar </button>' +
