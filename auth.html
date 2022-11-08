@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> projeto eCommerce </title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <link rel="stylesheet" href="auth/css/authStyle.css">
+    </head>
+
+    <body onload="authState()">
+       
+        <main>
+            <form>
+                <div class="container">
+                    <label id="title"> projeto eCommerce </label>
+                </div>
+
+                <div class="container">
+                    <label for="email"> e-mail </label>
+                    <input type="email" id="email">
+                </div>
+
+                <div class="container" id="divPass">
+                    <label for="pass"> senha </label>
+                    <input type="password" id="pass">
+                </div>
+
+                <div class="container" id="divBtn">
+                    <div>
+                        <button type="button" id="auth"> login </button>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <label id="status"> status: </label>
+                </div>
+            </form>
+        </main>
+
+        <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"> </script>
+    
+        <script src="global/js/basicFunctions.js"> </script>
+        <script src="global/js/firebase.js"> </script>
+       
+        <script src="auth/js/auth.js"> </script>
+    </body>
+
+</html>

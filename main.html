@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title> projeto eCommerce </title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <link rel="stylesheet" href="main/css/mainStyle.css">
+    </head>
+
+    <body>
+        <div id="preLoad">
+            <img src="main/resource/loading.svg">
+        </div>
+
+        <header>
+            <div id="menu">
+
+                <div id="nomeProj">
+                    <label> projeto eCommerce </label>
+                </div>
+
+                <div id="optMenu">
+                    <label id="btnSair" onclick="deslogar();"> Sair </label>
+                </div>
+            </div>
+        </header>
+
+        <main>
+    
+            <div id="filtro">
+
+                <div class="titulo">
+                    <img class="arrow" id="imgFiltro" src="main/resource/up-arrows.png">
+                    <label> filtro </label>
+                </div>
+
+                <div id="conteudoFiltro">
+
+                    <div class="dadosFiltro" id="produtoFiltro">
+
+                        <div id="divItemSelecionado">
+                            <label for="divItemSelecionado" id="lblItemSelecionado"> item selecionado: </label>
+                        </div>
+                        
+                        <form id="formFiltro">
+                            <div>
+                                <label for="inpLoja">loja:</label>
+                                <input type="text" id="inpLoja">
+                            </div>
+    
+                            <div>
+                                <label for="selectProdut"> item: </label>
+                                <select id="selectProdut"> </select>
+                            </div>
+    
+                            <div>
+                                <button type="button" id="btnSave"> salvar </button>
+                                <button type="button" class="btnDel" id="btnDeleteProd"> deletar </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="dadosFiltro" id="cadastroFiltro">
+
+                        <form id="formCadastro">
+                            <div>
+                                <label for="inpProduto"> novo item: </label>
+                                <input type="text" id="inpProduto">
+                            </div>
+
+                            <div>
+                                <button type="button" id="newProduct"> cadastrar </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id="analytics">
+
+                <div class="titulo">
+                    <img class="arrow" id="imgDados" src="main/resource/down-arrows.png">
+                    <label> resumo de compra e venda </label>
+                </div>
+
+                <div id="conteudoDados">
+
+                    <div class="dados">
+
+                        resumo de compras
+                        <ul>
+                            <li id="comp1"> quantidade compras: </li>
+                            <li id="comp2"> total unidades compradas: </li>
+                            <li id="comp3"> valor total gasto: </li>
+                            <li id="comp4"> mês atual: </li>
+                            <li id="comp5"> mês passado: </li>
+                            <li id="comp6"> mês retrasado: </li>
+                            <li id="comp7"> valor médio de compra: </li>
+                            <li id="comp8"> valor médio da unidade: </li>
+                        </ul>
+                    </div>
+
+                    <div class="dados">
+
+                        resumo de vendas (concluído)
+                        <ul>
+                            <li id="vend1"> total unidades vendidas: </li>
+                            <li id="vend2"> mês atual: </li>
+                            <li id="vend3"> mês passado: </li>
+                            <li id="vend4"> mês retrasado: </li>
+                            <li id="vend5"> valor médio de venda: </li>
+                        </ul>
+                    </div>
+
+                    <div class="dados">
+
+                        estoque
+                        <ul>
+                            <li id="est1"> unidades em andamento: </li>
+                            <li id="est2"> unidades em estoque: </li>
+                        </ul>
+                    </div>
+
+                    <div class="dados">
+                        
+                        valores (concluído)
+                        <ul>
+                            <li id="val1"> total faturado: </li>
+                            <li id="val2"> mês atual: </li>
+                            <li id="val3"> mês passado: </li>
+                            <li id="val4"> mês retrasado: </li>
+                            <li id="val5"> total lucro: </li>
+                            <li id="val6"> mês atual: </li>
+                            <li id="val7"> mês passado: </li>
+                            <li id="val8"> mês retrasado: </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="compra">
+
+                <div class="titulo">
+                    <img class="arrow" id="imgCompra" src="main/resource/down-arrows.png">
+                    <label> compras </label>
+                </div>
+
+                <div id="conteudoCompra">
+
+                    <div class="checkbox">
+                        <div>
+                            exibir apenas os ultimos 3 meses
+                        </div>
+                        <div>
+                             <input type="checkbox" id="cboxComp" onclick="saveStatus()">
+                        </div>
+                    </div>
+
+                    <div class="tabela">
+
+                        <table>
+
+                            <tr>
+                                <td> status pedido </td>
+                                <td> fornecedor </td>
+                                <td> identificador </td>
+                                <td> data compra </td>
+                                <td> valor / média por und </td>
+                                <td> unidades </td>
+                                <td> vendas </td>
+                                <td class="tdBtn"> </td> <!-- espaço para o botão -->
+                                <td class="tdBtn"> </td> <!-- espaço para o botão -->
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <select id="compra_status">
+                                        <option value="1"> em andamento </option>
+                                        <option value="2"> disponível para venda </option>
+                                        <option value="3"> esgotado </option>
+                                    </select>
+                                </td>
+
+                                <td> <input type="text" id="compra_fornecedor"> </td>
+                                <td> <input type="text" id="compra_id"> </td>
+                                <td> <input type="text" id="compra_data"> </td>
+                                <td> <input type="text" id="compra_valor"> </td>
+                                <td> <input type="text" id="compra_quantidade"> </td>
+                                <td> </td> <!-- espaço para vendas -->
+                                
+                                <td class="tdBtn">
+                                    <button type="button" class="btnUpd" id="compraUpd" onclick="atualizar(this.id)"> atualizar </button>
+                                </td>
+                                
+                                <td class="tdBtn">
+                                    <button type="button" class="btnSub" id="compraSubmit" onclick="submeter(this.id)"> submeter </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <table>
+                        <tbody id="compra_lista"> </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="venda">
+
+                <div class="titulo">
+                    <img class="arrow" id="imgVenda" src="main/resource/up-arrows.png">
+                    <label> vendas </label>
+                </div>
+
+                <div id="conteudoVenda">
+
+                    <div class="checkbox">
+                        <div>
+                            exibir apenas os ultimos 3 meses
+                        </div>
+                        <div>
+                             <input type="checkbox" id="cboxVend" onclick="saveStatus()">
+                        </div>
+                    </div>
+
+                    <div class="tabela">
+
+                        <table>
+                            <tr>
+                                <td> identificador </td>
+                                <td> data venda </td>
+                                <td> valor </td>
+                                <td> taxa plataforma </td>
+                                <td> faturado </td>
+                                <td> lucro </td>
+                                <td> data conclusão </td>
+                                <td class="tdBtn"> </td> <!-- espaço para o botão -->
+                                <td class="tdBtn"> </td> <!-- espaço para o botão -->
+                            </tr>
+
+                            <tr>
+                                <td> <input type="text" id="venda_id"> </td>
+                                <td> <input type="text" id="venda_data"> </td>
+                                <td> <input type="text" id="venda_valor"> </td>
+                                <td> <input type="text" id="venda_taxa" value="20"> </td>
+                                <td> </td> <!-- espaço faturado -->
+                                <td> </td> <!-- espaço lucro -->
+                                <td> <input type="text" id="venda_concluido"> </td> <!-- espaço concluido -->
+                                
+                                <td class="tdBtn">
+                                    <button type="button" class="btnUpd" id="vendaUpd" onclick="atualizar(this.id)"> atualizar </button>
+                                </td>
+
+                                <td class="tdBtn">
+                                    <button type="button" class="btnSub" id="vendaSubmit" onclick="submeter(this.id)"> submeter </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <table>
+                        <tbody id="venda_lista"> </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"> </script>
+
+        <script src="global/js/basicFunctions.js"> </script>
+        <script src="global/js/firebase.js"> </script>
+
+        <script src="main/js/loaded.js"> </script>
+        <script src="main/js/interative.js"> </script>
+    </body>
+</html>
