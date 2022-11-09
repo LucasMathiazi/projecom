@@ -379,13 +379,13 @@ function tabela(cb) {
 
             '<td class="tdBtn">' +
                 '<button value="' + i + '" class="btnEdit" id="compraEdit" onclick="editar(this.value, this.id)">' + 
-                    '<img src="/main/resource/btn/editar.png"> </img>' +
+                    '<img src="main/resource/btn/editar.png">' +
                 '</button>' +
             '</td>' +
 
             '<td class="tdBtn">' +
                 '<button value="' + e.indexServer + '" class="btnDel" id="compraDelete" onclick="deletar(this.value, this.id)">' +
-                    '<img src="/main/resource/btn/remove.png"> </img>' +
+                    '<img src="main/resource/btn/remove.png">' +
                  '</button>' +
             '</td>'
         );
