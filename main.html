@@ -56,8 +56,8 @@
                             </div>
     
                             <div>
-                                <button type="button" id="btnSave"> salvar </button>
-                                <button type="button" class="btnDel" id="btnDeleteProd"> deletar </button>
+                                <button type="button" class="btn" id="btnSave"> salvar </button>
+                                <button type="button" class="btnDel, btn" id="btnDeleteProd"> deletar </button>
                             </div>
                         </form>
                     </div>
@@ -71,7 +71,7 @@
                             </div>
 
                             <div>
-                                <button type="button" id="newProduct"> cadastrar </button>
+                                <button type="button" class="btn" id="newProduct"> cadastrar </button>
                             </div>
                         </form>
                     </div>
@@ -191,11 +191,15 @@
                                 <td> </td> <!-- espaço para vendas -->
                                 
                                 <td class="tdBtn">
-                                    <button type="button" class="btnUpd" id="compraUpd" onclick="atualizar(this.id)"> atualizar </button>
+                                    <button type="button" class="btnUpd" id="compraUpd" onclick="atualizar(this.id)">
+                                        <img src="main/resource/btn/upd.png" alt="">
+                                    </button>
                                 </td>
                                 
                                 <td class="tdBtn">
-                                    <button type="button" class="btnSub" id="compraSubmit" onclick="submeter(this.id)"> submeter </button>
+                                    <button type="button" class="btnSub" id="compraSubmit" onclick="submeter(this.id)">
+                                        <img src="main/resource/btn/sub.png">
+                                    </button>
                                 </td>
                             </tr>
                         </table>
@@ -250,11 +254,15 @@
                                 <td> <input type="text" id="venda_concluido"> </td> <!-- espaço concluido -->
                                 
                                 <td class="tdBtn">
-                                    <button type="button" class="btnUpd" id="vendaUpd" onclick="atualizar(this.id)"> atualizar </button>
+                                    <button type="button" class="btnUpd" id="vendaUpd" onclick="atualizar(this.id)">
+                                        <img src="main/resource/btn/upd.png">
+                                    </button>
                                 </td>
 
                                 <td class="tdBtn">
-                                    <button type="button" class="btnSub" id="vendaSubmit" onclick="submeter(this.id)"> submeter </button>
+                                    <button type="button" class="btnSub" id="vendaSubmit" onclick="submeter(this.id)">
+                                        <img src="main/resource/btn/sub.png">
+                                    </button>
                                 </td>
                             </tr>
                         </table>

@@ -10,6 +10,8 @@
     cursor: default;
 }
 
+
+
 body {
     background: rgb(120, 120, 120);
 }
@@ -168,13 +170,17 @@ ul {
 .tabela {
     width: 100%;
     border-radius: 10px;
+    margin-bottom: 20px;
     background: rgb(80, 80, 80);
 }
 td {
-    width: 163px;
+    width: 173px;
     height: 30px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(80, 80, 80);
 } .tdBtn {
-    width: 75px;
+    width: 40px;
 } .tdTextLeft {
     text-align: left;
 } .tdTextColorPurple {
@@ -201,42 +207,32 @@ td {
     outline: none;
 }
 
-button {
-    display: inline-block;
-    width: 70px;
-    padding: 3px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    color: rgb(255, 255, 255);
-    background: rgba(139, 139, 139, 0.8);
-} button:hover {
-    background: rgba(139, 139, 139, 1);
-}
-
-.btnUpd, #newProduct {
-    background: rgba(94, 94, 206, 0.8);
-} .btnUpd:hover, #newProduct:hover {
-    background: rgba(94, 94, 206, 1);
-}
-
+.btnEdit,
+.btnDel,
+.btnUpd,
 .btnSub {
-    background: rgba(93, 211, 77, 0.8);
-} .btnSub:hover {
-    background: rgba(93, 211, 77, 1);
+    border: none;
+    background-color: transparent;
 }
 
-.btnDel {
-    background: rgba(255, 66, 66, 0.8);
-} .btnDel:hover {
-    background: rgba(255, 66, 66, 1);
+.btnEdit > img,
+.btnDel > img,
+.btnUpd > img,
+.btnSub > img {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
 }
 
-#btnSave {
-    background: rgba(58, 143, 255, 0.8);
-} #btnSave:hover {
-    background: rgb(58, 143, 255, 1);
+.btn {
+    width: 70px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background: rgb(134, 134, 134);
+} .btn:hover {
+    background: rgb(161, 161, 161);
 }
 
 #conteudoFiltro, #conteudoDados {

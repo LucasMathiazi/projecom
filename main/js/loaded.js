@@ -378,11 +378,15 @@ function tabela(cb) {
             '<td class="tdTextColorPurple">' + e.vendas + '</td>' +
 
             '<td class="tdBtn">' +
-            '<button value="' + i + '" class="btnEdit" id="compraEdit" onclick="editar(this.value, this.id)"> editar </button>' +
+                '<button value="' + i + '" class="btnEdit" id="compraEdit" onclick="editar(this.value, this.id)">' + 
+                    '<img src="/main/resource/btn/editar.png"> </img>' +
+                '</button>' +
             '</td>' +
 
             '<td class="tdBtn">' +
-            '<button value="' + (e.indexServer) + '" class="btnDel" id="compraDelete" onclick="deletar(this.value, this.id)"> deletar </button>' +
+                '<button value="' + e.indexServer + '" class="btnDel" id="compraDelete" onclick="deletar(this.value, this.id)">' +
+                    '<img src="/main/resource/btn/remove.png"> </img>' +
+                 '</button>' +
             '</td>'
         );
     });
@@ -411,11 +415,15 @@ function tabela(cb) {
             '<td class="tdTextColorRed">' + concluido(e.concluido) + '</td>' +  //concluido
 
             '<td class="tdBtn">' +
-            '<button value="' + i + '" class="btnEdit" id="vendaEdit" onclick="editar(this.value, this.id)"> editar </button>' +
+                '<button value="' + i + '" class="btnEdit" id="vendaEdit" onclick="editar(this.value, this.id)">' + 
+                    '<img src="/main/resource/btn/editar.png"> </img>' +
+                '</button>' +
             '</td>' +
 
             '<td class="tdBtn">' +
-            '<button value="' + e.indexServer + '" class="btnDel" id="vendaDelete" onclick="deletar(this.value, this.id)"> deletar </button>' +
+                '<button value="' + e.indexServer + '" class="btnDel" id="vendaDelete" onclick="deletar(this.value, this.id)">' +
+                    '<img src="/main/resource/btn/remove.png"> </img>' +
+                 '</button>' +
             '</td>'
         );
     });
@@ -433,6 +441,7 @@ function saveStatus() {
         window.location.reload();
     }, 200);
 }
+
 function listas(loja, produto) {
 
     db.collection(loja).doc(produto).get()
