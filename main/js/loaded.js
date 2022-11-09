@@ -1,11 +1,11 @@
-var compras = [], vendas = [];
+var compras = [];
+var vendas = [];
 
 function preLoad() {
-    setTimeout(() => {
-        getId("preLoad").style.display = 'none';
-        getTag("header")[0].style.display = 'block';
-        getTag("main")[0].style.display = 'block';
-    }, 500);
+    $("#preLoad").fadeToggle("fast", () => {
+        $("header").fadeToggle("medium");
+        $("main").fadeToggle("medium");
+    });
 }
 
 let hj = new Date();
@@ -19,7 +19,7 @@ let ultimoDiaMesAnterior = new Date(hj.getFullYear(), hj.getMonth(), 0);
 let primeiroDiaMesRetrasado = new Date(hj.getFullYear(), (hj.getMonth() - 2), 1);
 let ultimoDiaMesRetrasado = new Date(hj.getFullYear(), (hj.getMonth() - 1), 0);
 function dados(cb) {
-    let vendConc = vendas.filter(e=>{
+    let vendConc = vendas.filter(e => {
         if (e.concluido > 0) {
             return e;
         }
@@ -69,7 +69,7 @@ function dados(cb) {
             compras.filter(e => {
                 if (e.data >= primeiroDiaMesRetrasado && e.data <= ultimoDiaMesRetrasado) {
                     return e;
-                }   
+                }
             }, 0).reduce((t, e) => {
                 return t += e.valor;
             }, 0)
@@ -91,14 +91,14 @@ function dados(cb) {
             }, 0)
         );
     }
-    
+
     let dadosVendas = () => {
         //total unidades vendidas
         getId('vend1').innerHTML +=
             vendas.length
-        + ' (' +
+            + ' (' +
             vendConc.length
-        + ')'; 
+            + ')';
 
         //mês atual
         getId('vend2').innerHTML +=
@@ -112,7 +112,7 @@ function dados(cb) {
                 if (e.data >= primeiroDiaMesAtual && e.data <= ultimoDiaMesAtual) {
                     return e;
                 }
-            }, 0).length + ')'; 
+            }, 0).length + ')';
 
         //mês anterior
         getId('vend3').innerHTML +=
@@ -126,7 +126,7 @@ function dados(cb) {
                 if (e.data >= primeiroDiaMesAnterior && e.data <= ultimoDiaMesAnterior) {
                     return e;
                 }
-            }, 0).length + ')'; 
+            }, 0).length + ')';
 
         //mês retrasado
         getId('vend4').innerHTML +=
@@ -140,7 +140,7 @@ function dados(cb) {
                 if (e.data >= primeiroDiaMesAnterior && e.data <= ultimoDiaMesAnterior) {
                     return e;
                 }
-            }, 0).length + ')'; 
+            }, 0).length + ')';
 
         //valor médio de venda
         getId('vend5').innerHTML += toBRL(
@@ -177,20 +177,20 @@ function dados(cb) {
 
         //total faturado
         getId('val1').innerHTML += toBRL(
-            
+
             vendas.reduce((t, e) => {
                 return t += e.faturado;
             }, 0)
         )
-        + ' (' + toBRL(
-            vendConc.reduce((t, e)=> {
-                return t += e.faturado;
-            }, 0)
-        ) + ')';
+            + ' (' + toBRL(
+                vendConc.reduce((t, e) => {
+                    return t += e.faturado;
+                }, 0)
+            ) + ')';
 
         //faturamento mês atual
         getId('val2').innerHTML += toBRL(
-            
+
             vendas.filter(e => {
                 if (e.data >= primeiroDiaMesAtual && e.data <= ultimoDiaMesAtual) {
                     return e;
@@ -212,7 +212,7 @@ function dados(cb) {
 
         //faturamento mês passado
         getId('val3').innerHTML += toBRL(
-            
+
             vendas.filter(e => {
                 if (e.data >= primeiroDiaMesAnterior && e.data <= ultimoDiaMesAnterior) {
                     return e;
@@ -259,7 +259,7 @@ function dados(cb) {
                 return t += e.lucro;
             }, 0)
         ) + ' (' + toBRL(
-            vendConc.reduce((t, e)=> {
+            vendConc.reduce((t, e) => {
                 return t += e.lucro;
             }, 0)
         ) + ')';
@@ -378,11 +378,11 @@ function tabela(cb) {
             '<td class="tdTextColorPurple">' + e.vendas + '</td>' +
 
             '<td class="tdBtn">' +
-                '<button value="' + i + '" class="btnEdit" id="compraEdit" onclick="editar(this.value, this.id)"> editar </button>' +
+            '<button value="' + i + '" class="btnEdit" id="compraEdit" onclick="editar(this.value, this.id)"> editar </button>' +
             '</td>' +
 
             '<td class="tdBtn">' +
-                '<button value="' + (e.indexServer) + '" class="btnDel" id="compraDelete" onclick="deletar(this.value, this.id)"> deletar </button>' +
+            '<button value="' + (e.indexServer) + '" class="btnDel" id="compraDelete" onclick="deletar(this.value, this.id)"> deletar </button>' +
             '</td>'
         );
     });
@@ -411,11 +411,11 @@ function tabela(cb) {
             '<td class="tdTextColorRed">' + concluido(e.concluido) + '</td>' +  //concluido
 
             '<td class="tdBtn">' +
-                '<button value="' + i + '" class="btnEdit" id="vendaEdit" onclick="editar(this.value, this.id)"> editar </button>' +
+            '<button value="' + i + '" class="btnEdit" id="vendaEdit" onclick="editar(this.value, this.id)"> editar </button>' +
             '</td>' +
 
             '<td class="tdBtn">' +
-                '<button value="' + e.indexServer + '" class="btnDel" id="vendaDelete" onclick="deletar(this.value, this.id)"> deletar </button>' +
+            '<button value="' + e.indexServer + '" class="btnDel" id="vendaDelete" onclick="deletar(this.value, this.id)"> deletar </button>' +
             '</td>'
         );
     });
@@ -425,19 +425,19 @@ function tabela(cb) {
 
 let cboxComp = getId('cboxComp');
 let cboxVend = getId('cboxVend');
-function saveStatus () {
+function saveStatus() {
     localStorage.setItem('cboxComp', Number(cboxComp.checked));
     localStorage.setItem('cboxVend', Number(cboxVend.checked));
 
-    setTimeout(()=>{
+    setTimeout(() => {
         window.location.reload();
     }, 200);
 }
 function listas(loja, produto) {
-    
+
     db.collection(loja).doc(produto).get()
         .then(doc => {
-            
+
             //lista de compras
             const refCompra = doc.data().compra;
             try {
@@ -462,7 +462,7 @@ function listas(loja, produto) {
                 //filtra os ultimos 3 meses, caso checked
                 cboxComp.checked = Number(localStorage.getItem('cboxComp'));
                 if (cboxComp.checked) {
-                    compras = compras.filter(e=>{
+                    compras = compras.filter(e => {
                         if (e.data <= ultimoDiaMesAtual && e.data >= primeiroDiaMesRetrasado) {
                             return e;
                         }
@@ -498,7 +498,7 @@ function listas(loja, produto) {
                 //filtra os ultimos 3 meses, caso checked
                 cboxVend.checked = Number(localStorage.getItem('cboxVend'));
                 if (cboxComp.checked) {
-                    vendas = vendas.filter(e=>{
+                    vendas = vendas.filter(e => {
                         if (e.data <= ultimoDiaMesAtual && e.data >= primeiroDiaMesRetrasado) {
                             return e;
                         }
@@ -542,26 +542,27 @@ function listas(loja, produto) {
             }
 
             return tabela(dados);
-        }).catch (error=> {
+        }).catch(error => {
             alert('erro ao carregar a lista de compra e venda. error:\n\nresposta do servidor: ', error);
             return preLoad();
         });
 }
 
-addEventListener('load', () => {
+
+$(window).on("load", () => {
 
     auth.onAuthStateChanged(logado => {
 
         if (logado) {
-            
+
             LOJA = localStorage.getItem('loja');
-                $('#inpLoja').val(LOJA);
+            $('#inpLoja').val(LOJA);
 
             if (LOJA == undefined || LOJA == "null") {
                 preLoad();
             } else {
-                db.collection(LOJA).get().then(snap=>{
-                    snap.forEach(e=>{
+                db.collection(LOJA).get().then(snap => {
+                    snap.forEach(e => {
                         $('#selectProdut').append('<option>' + e.id + '</option>');
                     });
 
@@ -574,9 +575,9 @@ addEventListener('load', () => {
                         return listas(LOJA, PRODUTO);
                     };
 
-                }).catch(error=>{
+                }).catch(error => {
                     alert('O nome da loja não foi encontrado. error: ', error);
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         localStorage.clear();
                         window.location.reload();
                     }, 1000);

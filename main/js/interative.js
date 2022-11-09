@@ -216,50 +216,58 @@ $('#btnSave').click(()=>{
     setTimeout(()=>{window.location.reload();},1000);
 });
 
+
+
 let imgFiltro = true;
 $('#imgFiltro').click(() => {
-    if (imgFiltro) {
-        $('#conteudoFiltro').hide();
-        $('#imgFiltro').attr('src', 'main/resource/down-arrows.png');
-    } else {
-        $('#conteudoFiltro').css('display', 'flex');
-        $('#imgFiltro').attr('src', 'main/resource/up-arrows.png');
-    }
-    imgFiltro = !imgFiltro;
+
+    $("#conteudoFiltro").slideToggle("fast", () => {
+        if (imgFiltro)
+            $("#imgFiltro").attr("src", "main/resource/up-arrows.png");
+        else {
+            $("#conteudoFiltro").css("display", "flex");
+            $("#imgFiltro").attr("src", "main/resource/down-arrows.png");
+        }
+        imgFiltro = !imgFiltro;
+    });
 });
 
-let imgDados = false;
+let imgDados = true;
 $('#imgDados').click(() => {
-    if (imgDados) {
-        $('#conteudoDados').hide();
-        $('#imgDados').attr('src', 'main/resource/down-arrows.png');
-    } else {
-        $('#conteudoDados').css('display', 'flex');
-        $('#imgDados').attr('src', 'main/resource/up-arrows.png');
-    }
-    imgDados = !imgDados;
+
+    $("#conteudoDados").slideToggle("fast", () => {
+        if (imgDados)
+            $("#imgDados").attr("src", "main/resource/up-arrows.png");
+        else {
+            $("#conteudoDados").css("display", "flex");
+            $("#imgDados").attr("src", "main/resource/down-arrows.png");
+        }
+        imgDados = !imgDados;
+    });
 });
 
 let imgCompra = false;
 $('#imgCompra').click(() => {
-    if (imgCompra) {
-        $('#conteudoCompra').hide();
-        $('#imgCompra').attr('src', 'main/resource/down-arrows.png');
-    } else {
-        $('#conteudoCompra').show();
-        $('#imgCompra').attr('src', 'main/resource/up-arrows.png');
-    }
-    imgCompra = !imgCompra;
+
+    $("#conteudoCompra").slideToggle("fast", () => {
+        if (imgCompra)
+            $('#imgCompra').attr('src', 'main/resource/up-arrows.png');
+        else
+            $('#imgCompra').attr('src', 'main/resource/down-arrows.png');
+
+        imgCompra = !imgCompra;
+    });
 });
 
-let imgVenda = true;
+let imgVenda = false;
 $('#imgVenda').click(() => {
-    if (imgVenda) {
-        $('#conteudoVenda').hide();
-        $('#imgVenda').attr('src', 'main/resource/down-arrows.png');
-    } else {
-        $('#conteudoVenda').show();
-        $('#imgVenda').attr('src', 'main/resource/up-arrows.png');
-    }
-    imgVenda = !imgVenda;
+
+    $("#conteudoVenda").slideToggle("fast", () => {
+        if (imgVenda)
+            $('#imgVenda').attr('src', 'main/resource/up-arrows.png');
+        else
+            $('#imgVenda').attr('src', 'main/resource/down-arrows.png');
+
+        imgVenda = !imgVenda;
+    });
 });
