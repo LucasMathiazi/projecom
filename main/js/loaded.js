@@ -451,19 +451,16 @@ function listas(loja, produto) {
             const refCompra = doc.data().compra;
             try {
                 refCompra.forEach((e, i) => {
-
                     let unidade = (valor, quantidade) => { return valor / quantidade; }
-
                     compras.push({
-
-                        'fornecedor': (e.fornecedor),
-                        'id': (e.idCompra),
-                        'data': (new Date(e.data)),
-                        'valor': (e.valor),
-                        'quantidade': (e.quantidade),
-                        'indexServer': (i),
-                        'status': (e.status),
-                        'unidade': (unidade((e.valor), (e.quantidade))),
+                        'fornecedor': e.fornecedor,
+                        'id': e.idCompra,
+                        'data': new Date(e.data),
+                        'valor': e.valor,
+                        'quantidade': e.quantidade,
+                        'indexServer': i,
+                        'status': e.status,
+                        'unidade': unidade(e.valor, e.quantidade),
                         'vendas': 0
                     });
                 });
@@ -475,11 +472,9 @@ function listas(loja, produto) {
                         if (e.data <= ultimoDiaMesAtual && e.data >= primeiroDiaMesRetrasado) {
                             return e;
                         }
-                    })
+                    });
                 }
-
                 ordenar(compras);
-
             } catch (error) {
                 console.log('erro ao carregar a lista de COMPRAS.\n\nresposta do servidor: ', error);
             }
@@ -488,19 +483,16 @@ function listas(loja, produto) {
             const refVenda = doc.data().venda;
             try {
                 refVenda.forEach((e, i) => {
-
                     let faturado = (valor, taxa) => { return valor - (valor * (taxa / 100)) }
-
                     let concluido = (data) => { if (data == "") { return data; } else { return new Date(data); } }
-
                     vendas.push({
-                        'id': (e.idVenda),
-                        'data': (new Date(e.data)),
-                        'valor': (e.valor),
-                        'taxa': (e.taxa),
-                        'concluido': concluido((e.concluido)),
+                        'id': e.idVenda,
+                        'data': new Date(e.data),
+                        'valor': e.valor,
+                        'taxa': e.taxa,
+                        'concluido': concluido(e.concluido),
                         'indexServer': i,
-                        'faturado': faturado((e.valor), (e.taxa))
+                        'faturado': faturado(e.valor, e.taxa)
                     });
                 });
 
@@ -511,52 +503,39 @@ function listas(loja, produto) {
                         if (e.data <= ultimoDiaMesAtual && e.data >= primeiroDiaMesRetrasado) {
                             return e;
                         }
-                    })
+                    });
                 }
-
                 ordenar(vendas);
-
             } catch (error) {
                 console.log('erro ao carregar a lista de VENDAS.\n\nresposta do servidor: ', error);
             }
 
             //calculo lucro
+            let indexCompra = (compras.length - 1);
+            let indexVenda = (vendas.length - 1);
             try {
-                let index_compra = ((compras.length) - 1);
-
-                vendas.forEach((e, i) => {
-
+                for (indexVenda; indexVenda >= 0;  indexVenda --) {
                     let lucro = () => {
-                        // pegamos a quantidade de vendas da última compra
-                        // pegamos a quantidade de itens comprados da ultima compra
-                        // se a quantidade de vendas for menor que a quantidade comprada, segue-
-                        if (compras[index_compra].vendas < compras[index_compra].quantidade) {
-                            // incrementamos +1 na venda
-                            compras[index_compra].vendas += 1;
+                        if ((compras[indexCompra].status == "2" || compras[indexCompra].status == "3") &&
+                            (compras[indexCompra].vendas < compras[indexCompra].quantidade)) {
+                                compras[indexCompra].vendas += 1;
+                                return (vendas[indexVenda].lucro = (vendas[indexVenda].faturado - compras[indexCompra].unidade));
                         } else {
-                            //caso a ultima compra for toda vendida, decrementamos o indice da compra
-                            index_compra--;
-                            // incrementamos +1 na venda
-                            compras[index_compra].vendas += 1;
+                            indexCompra --;
+                            indexVenda ++;
                         }
-                        // returna o calculo do lucro
-                        return (e.faturado - compras[index_compra].unidade);
                     }
-
-                    vendas[i].lucro = lucro();
-                });
-
+                    lucro();
+                }
             } catch (error) {
                 console.log('erro ao calcular o lucro.\n\nresposta do servidor: ', error);
             }
-
             return tabela(dados);
         }).catch(error => {
             alert('erro ao carregar a lista de compra e venda. error:\n\nresposta do servidor: ', error);
             return preLoad();
         });
 }
-
 
 $(window).on("load", () => {
 
@@ -569,6 +548,7 @@ $(window).on("load", () => {
 
             if (LOJA == undefined || LOJA == "null") {
                 preLoad();
+                $("#lblStatus").text("status: defina o nome da loja antes de continuar.");
             } else {
                 db.collection(LOJA).get().then(snap => {
                     snap.forEach(e => {
@@ -578,18 +558,19 @@ $(window).on("load", () => {
                     PRODUTO = localStorage.getItem('produto');
                     if (PRODUTO == undefined || PRODUTO == "null") {
                         preLoad();
+                        $("#lblStatus").text("status: selecione o produto cadastrado antes de continuar.");
                     } else {
                         $('#selectProdut').val(PRODUTO);
-                        getId("lblItemSelecionado").innerHTML += (" " + PRODUTO);
+                        $("#lblStatus").text('status: o produto "' + PRODUTO + '" está selecionado.');
                         return listas(LOJA, PRODUTO);
                     };
 
-                }).catch(error => {
-                    alert('O nome da loja não foi encontrado. error: ', error);
+                }).catch(() => {
+                    alert("O nome da loja não foi encontrado, tente novamente.");
                     setTimeout(() => {
                         localStorage.clear();
                         window.location.reload();
-                    }, 1000);
+                    }, 500);
                 });
             }
         } else {
