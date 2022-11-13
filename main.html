@@ -3,28 +3,43 @@
 <html>
 
     <head>
+
         <meta charset="UTF-8">
+
         <title> projeto eCommerce </title>
+
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
         <link rel="stylesheet" href="main/css/mainStyle.css">
+
     </head>
 
     <body>
+
         <div id="preLoad">
+
             <img src="main/resource/loading.svg">
+
         </div>
 
         <header>
+
             <div id="menu">
 
                 <div id="nomeProj">
+
                     <label> projeto eCommerce </label>
+
                 </div>
 
                 <div id="optMenu">
+
                     <label id="btnSair" onclick="deslogar();"> Sair </label>
+
                 </div>
+
             </div>
+
         </header>
 
         <main>
@@ -32,54 +47,77 @@
             <div id="filtro">
 
                 <div class="titulo">
+
                     <img class="arrow" id="imgFiltro" src="main/resource/down-arrows.png">
+
                     <label> filtro </label>
+
                 </div>
 
                 <div id="conteudoFiltro">
 
                     <div class="dadosFiltro" id="produtoFiltro">
-
-                        <div id="divItemSelecionado">
-                            <label for="divItemSelecionado"> painel </label>
-                        </div>
                         
                         <form id="formFiltro">
+
                             <div>
-                                <label for="inpLoja">loja:</label>
+
+                                <label> loja: </label>
+
                                 <input type="text" id="inpLoja">
+
                             </div>
     
                             <div>
-                                <label for="selectProdut"> item: </label>
+
+                                <label> item: </label>
+
                                 <select id="selectProdut"> </select>
+
                             </div>
     
                             <div class="divButton">
+
                                 <button type="button" class="btn" id="btnSave"> salvar </button>
+
                                 <button type="button" class="btnDel, btn" id="btnDeleteProd"> deletar </button>
+
                             </div>
 
-                            <div>
+                            <div id="divStatus">
+
                                 <label id="lblStatus"> Status: </label>
+
                             </div>
+
                         </form>
+
                     </div>
 
                     <div class="dadosFiltro" id="cadastroFiltro">
 
                         <form id="formCadastro">
+
                             <div>
-                                <label for="inpProduto"> novo item: </label>
+
+                                <label> novo item: </label>
+
                                 <input type="text" id="inpProduto">
+
                             </div>
 
                             <div class="divButton">
+
                                 <button type="button" class="btn" id="newProduct"> cadastrar </button>
+
                             </div>
+
                         </form>
+
                     </div>
+
                 </div>
+
             </div>
 
             <div id="analytics">
